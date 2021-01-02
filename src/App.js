@@ -41,17 +41,7 @@ function App() {
           }}
         >
           <Timer proptime={amount} />
-          {/* </Col> */}
 
-          {/* <Col
-          xl={8}
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        > */}
           <Row style={{ padding: "2em" }}>
             <StyledText onClick={() => setamount(25)}>Pomodoro</StyledText>
             <StyledText onClick={() => setamount(5)}>Short Break</StyledText>

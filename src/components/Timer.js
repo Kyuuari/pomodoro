@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useSpring, animated } from "react-spring";
 import { CircularProgress } from "@material-ui/core";
 import useSound from "use-sound";
 import sound from "../assets/piece-of-cake.mp3";
-import useLongPress from "./useLongPress";
-import { Container, Row, Col } from "react-bootstrap";
+import useLongPress from "../hooks/useLongPress";
+import { ThemeContext } from "../context/ThemeState"
 
 const Timer = ({ proptime }) => {
   const [time, settime] = useState(
@@ -32,21 +32,18 @@ const Timer = ({ proptime }) => {
 
   useEffect(() => {
     reset();
-    return () => {};
+    return () => { };
   }, [proptime]);
 
   useEffect(() => {
-    // console.log("h1");
     if (time == 0) {
-      console.log("h2");
       play();
     }
-    return () => {};
+    return () => { };
   }, [time]);
 
   function tick() {
     if (time > 0) {
-      // console.log(time, " : ", proptime);
       setmin(Math.floor(time / 60));
       setsec(time % 60);
       settime((currtime) => currtime - 1);
@@ -62,7 +59,6 @@ const Timer = ({ proptime }) => {
   }
 
   function reset() {
-    // console.log("reset");
     settime(proptime * 60);
     setmin(Math.floor(time / 60));
     setsec(time % 60);
@@ -70,7 +66,6 @@ const Timer = ({ proptime }) => {
   }
 
   function start() {
-    // console.log("start");
     setisRunning(true);
   }
 
@@ -97,6 +92,8 @@ const Timer = ({ proptime }) => {
     defaultOptions
   );
 
+  const { color } = useContext(ThemeContext);
+
   return (
     <>
       <animated.div
@@ -118,22 +115,18 @@ const Timer = ({ proptime }) => {
             variant="determinate"
             value={(time / (proptime * 60)) * 100}
             style={{
-              color: "#5493DD",
+              color: color.secondary,
               height: "250px",
               width: "250px",
               padding: "2.5em",
             }}
           />
         </div>
-        {/* {isRunning ? <div>Pause</div> : <div>Play</div>} */}
       </animated.div>
 
-      <Time>
+      <Time value={color.secondary}>
         {min}:{sec < 10 ? "0" + sec : sec}
       </Time>
-      {/* <Button onClick={() => start()}>Start</Button>
-      <Button onClick={() => stop()}>Stop</Button>
-      <Button onClick={() => reset()}>Reset</Button> */}
     </>
   );
 };
@@ -148,5 +141,5 @@ const Time = styled.div`
   justify-content: center;
   align-items: center;
   // border: 2px solid #5493dd;
-  color: #5493dd;
+  color: ${props => props.value};
 `;

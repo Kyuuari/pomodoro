@@ -49,7 +49,7 @@ const ColorPicker = () => {
             <ColorPick>
                 <ColorButton color={"#23395B"} onClick={() => setForeground("#23395B")} />
                 <ColorButton color={"#B9E3C6"} onClick={() => setForeground("#B9E3C6")} />
-                <ColorButton color={"#214F4B"} onClick={() => setBackground("#214F4B")} />
+                <ColorButton color={"#214F4B"} onClick={() => setForeground("#214F4B")} />
                 <ColorButton color={"#2DE1FC"} onClick={() => setForeground("#2DE1FC")} />
                 <ColorButton color={"#E1BC29"} onClick={() => setForeground("#E1BC29")} />
                 <ColorButton color={"#FFC857"} onClick={() => setForeground("#FFC857")} />

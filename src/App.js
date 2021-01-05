@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 // import "./App.css";
 import Timer from "./components/Timer";
 import styled from "styled-components";
 import { Container, Row, Col } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { ThemeContext } from "./context/ThemeState"
+import Sidebar from "./components/Sidebar"
 
-function App() {
+const App = (props) => {
   const [amount, setamount] = useState(() => 25);
+  const { color, setColor } = useContext(ThemeContext);
 
   function increase() {
     setamount((curramount) => curramount + 1);
@@ -21,42 +23,47 @@ function App() {
   }
 
   return (
-    <Container
-      fluid
-      style={{
-        backgroundColor: "#282c34",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Row>
-        <Col
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <Timer proptime={amount} />
 
-          <Row style={{ padding: "2em" }}>
-            <StyledText onClick={() => setamount(25)}>Pomodoro</StyledText>
-            <StyledText onClick={() => setamount(5)}>Short Break</StyledText>
-            <StyledText onClick={() => setamount(15)}>Long Break</StyledText>
-          </Row>
-          <Row>
-            <MinController>
-              <StyledButton onClick={() => increase()}> + </StyledButton>
-              <p style={{ lineHeight: "35pt" }}>{amount}</p>
-              <StyledButton onClick={() => decrease()}> - </StyledButton>
-            </MinController>
-          </Row>
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Sidebar />
+      <Container
+        fluid
+        style={{
+          backgroundColor: color.primary,
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Row>
+          <Col
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Timer proptime={amount} />
+
+            <Row style={{ padding: "2em" }}>
+              <StyledText value={color.secondary} onClick={() => setamount(25)}>Pomodoro</StyledText>
+              <StyledText value={color.secondary} onClick={() => setamount(5)}>Short Break</StyledText>
+              <StyledText value={color.secondary} onClick={() => setamount(15)}>Long Break</StyledText>
+            </Row>
+            <Row>
+              <MinController value={color.secondary}>
+                <StyledButton value={color.secondary} onClick={() => increase()}> + </StyledButton>
+                <p value={color.secondary} style={{ lineHeight: "35pt" }}>{amount}</p>
+                <StyledButton value={color.secondary} onClick={() => decrease()}> - </StyledButton>
+                {/* <StyledButton onClick={() => setColor("white")}> colorWhite </StyledButton> */}
+              </MinController>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
@@ -69,10 +76,13 @@ const StyledButton = styled.button`
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  border: 2px solid #5493dd;
-  color: #5493dd;
+  border: 2px solid ${props => props.value};
+  color: ${props => props.value};
   margin: 0 1em;
   padding: 0.25em 1em;
+  &:focus {
+    outline: none;
+}
 `;
 
 const StyledText = styled.button`
@@ -80,14 +90,17 @@ const StyledText = styled.button`
   // width: 50px;
   // height: 50px;
   border-radius: 25px;
-  border: 2px solid #5493dd;
-  color: #5493dd;
+  border: 2px solid ${props => props.value};
+  color: ${props => props.value};
   margin: 0 1em;
   padding: 0.25em 1em;
+  &:focus {
+    outline: none;
+}
 `;
 
 const MinController = styled.div`
-  color: #5493dd;
+  color: ${props => props.value};
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;

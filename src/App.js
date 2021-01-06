@@ -48,16 +48,15 @@ const App = (props) => {
             <Timer proptime={amount} />
 
             <Row style={{ padding: "2em" }}>
-              <StyledText value={color.secondary} onClick={() => setamount(25)}>Pomodoro</StyledText>
-              <StyledText value={color.secondary} onClick={() => setamount(5)}>Short Break</StyledText>
-              <StyledText value={color.secondary} onClick={() => setamount(15)}>Long Break</StyledText>
+              <StyledText value={color} onClick={() => setamount(25)}>Pomodoro</StyledText>
+              <StyledText value={color} onClick={() => setamount(5)}>Short Break</StyledText>
+              <StyledText value={color} onClick={() => setamount(15)}>Long Break</StyledText>
             </Row>
             <Row>
-              <MinController value={color.secondary}>
-                <StyledButton value={color.secondary} onClick={() => increase()}> + </StyledButton>
-                <p value={color.secondary} style={{ lineHeight: "35pt" }}>{amount}</p>
-                <StyledButton value={color.secondary} onClick={() => decrease()}> - </StyledButton>
-                {/* <StyledButton onClick={() => setColor("white")}> colorWhite </StyledButton> */}
+              <MinController value={color}>
+                <StyledButton value={color} onClick={() => increase()}> + </StyledButton>
+                <p style={{ lineHeight: "35pt" }}>{amount}</p>
+                <StyledButton value={color} onClick={() => decrease()}> - </StyledButton>
               </MinController>
             </Row>
           </Col>
@@ -69,20 +68,22 @@ const App = (props) => {
 
 export default App;
 
-// const StyledTimer = styled(Timer)``;
 
 const StyledButton = styled.button`
   background: transparent;
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  border: 2px solid ${props => props.value};
-  color: ${props => props.value};
+  border: 2px solid ${props => props.value.secondary};
+  color: ${props => props.value.secondary};
   margin: 0 1em;
   padding: 0.25em 1em;
   &:focus {
     outline: none;
 }
+&:hover{
+  background: ${props => props.value.secondary};
+  color: ${props => props.value.primary}
 `;
 
 const StyledText = styled.button`
@@ -90,17 +91,21 @@ const StyledText = styled.button`
   // width: 50px;
   // height: 50px;
   border-radius: 25px;
-  border: 2px solid ${props => props.value};
-  color: ${props => props.value};
+  border: 2px solid ${props => props.value.secondary};
+  color: ${props => props.value.secondary};
   margin: 0 1em;
   padding: 0.25em 1em;
   &:focus {
     outline: none;
 }
+&:hover{
+  background: ${props => props.value.secondary};
+  color: ${props => props.value.primary}
+}
 `;
 
 const MinController = styled.div`
-  color: ${props => props.value};
+  color: ${props => props.value.secondary};
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;

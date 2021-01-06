@@ -15,7 +15,7 @@ const ColorPicker = () => {
 
     return (
         <>
-            <div style={{ color: 'white' }}>BackgroundColor</div>
+            <div style={{ color: 'white', padding: '15px' }}>BackgroundColor</div>
             <ColorPick>
                 <ColorButton color={"#5493dd"} onClick={() => setBackground("#5493dd")} />
                 <ColorButton color={"#7329C5"} onClick={() => setBackground("#7329C5")} />
@@ -37,7 +37,7 @@ const ColorPicker = () => {
                 <ColorButton color={"#F4F1DE"} onClick={() => setBackground("#F4F1DE")} />
             </ColorPick>
 
-            <div style={{ color: 'white' }}>ForegroundColor</div>
+            <div style={{ color: 'white', padding: '15px' }}>ForegroundColor</div>
             <ColorPick>
                 <ColorButton color={"#5493dd"} onClick={() => setForeground("#5493dd")} />
                 <ColorButton color={"#7329C5"} onClick={() => setForeground("#7329C5")} />

@@ -1,9 +1,8 @@
-
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import ColorPicker from './ColorPicker';
+import React, { useState } from "react";
+import styled from "styled-components";
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
+import ColorPicker from "./ColorPicker";
 
 const Nav = styled.div`
   background: #15171c;
@@ -30,7 +29,7 @@ const SidebarNav = styled.nav`
   justify-content: center;
   position: fixed;
   top: 0;
-  left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
+  left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 350ms;
   z-index: 10;
 `;
@@ -40,29 +39,27 @@ const SidebarWrap = styled.div`
 `;
 
 const Sidebar = () => {
-    const [sidebar, setSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
 
-    const showSidebar = () => setSidebar(!sidebar);
+  const showSidebar = () => setSidebar(!sidebar);
 
-    return (
-        <>
-
-            <Nav>
-                <NavIcon to='#'>
-                    <FaIcons.FaBars onClick={showSidebar} />
-                </NavIcon>
-
-            </Nav>
-            <SidebarNav sidebar={sidebar}>
-                <SidebarWrap>
-                    <NavIcon to='#'>
-                        <AiIcons.AiOutlineClose onClick={showSidebar} />
-                    </NavIcon>
-                    <ColorPicker />
-                </SidebarWrap>
-            </SidebarNav>
-        </>
-    );
+  return (
+    <>
+      <Nav>
+        <NavIcon to="#">
+          <FaIcons.FaBars onClick={showSidebar} />
+        </NavIcon>
+      </Nav>
+      <SidebarNav sidebar={sidebar}>
+        <SidebarWrap>
+          <NavIcon to="#">
+            <AiIcons.AiOutlineClose onClick={showSidebar} />
+          </NavIcon>
+          <ColorPicker />
+        </SidebarWrap>
+      </SidebarNav>
+    </>
+  );
 };
 
 export default Sidebar;

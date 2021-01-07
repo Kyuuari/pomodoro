@@ -5,7 +5,7 @@ import { CircularProgress } from "@material-ui/core";
 import useSound from "use-sound";
 import sound from "../assets/piece-of-cake.mp3";
 import useLongPress from "../hooks/useLongPress";
-import { ThemeContext } from "../context/ThemeState"
+import { ThemeContext } from "../context/ThemeState";
 
 const Timer = ({ proptime }) => {
   const [time, settime] = useState(
@@ -32,14 +32,14 @@ const Timer = ({ proptime }) => {
 
   useEffect(() => {
     reset();
-    return () => { };
+    return () => {};
   }, [proptime]);
 
   useEffect(() => {
     if (time == 0) {
       play();
     }
-    return () => { };
+    return () => {};
   }, [time]);
 
   function tick() {
@@ -141,5 +141,12 @@ const Time = styled.div`
   justify-content: center;
   align-items: center;
   // border: 2px solid #5493dd;
-  color: ${props => props.value};
+  color: ${(props) => props.value};
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 `;

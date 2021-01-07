@@ -3,8 +3,8 @@ import React, { useState, useContext } from "react";
 import Timer from "./components/Timer";
 import styled from "styled-components";
 import { Container, Row, Col } from "react-bootstrap";
-import { ThemeContext } from "./context/ThemeState"
-import Sidebar from "./components/Sidebar"
+import { ThemeContext } from "./context/ThemeState";
+import Sidebar from "./components/Sidebar";
 
 const App = (props) => {
   const [amount, setamount] = useState(() => 25);
@@ -23,7 +23,6 @@ const App = (props) => {
   }
 
   return (
-
     <>
       <Sidebar />
       <Container
@@ -33,10 +32,15 @@ const App = (props) => {
           height: "100vh",
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
+          // alignItems: "center",
+          overflow: "auto",
         }}
       >
-        <Row>
+        <Row
+        // style={{
+        //   display: "block",
+        // }}
+        >
           <Col
             style={{
               justifyContent: "center",
@@ -47,16 +51,35 @@ const App = (props) => {
           >
             <Timer proptime={amount} />
 
-            <Row style={{ padding: "2em" }}>
-              <StyledText value={color} onClick={() => setamount(25)}>Pomodoro</StyledText>
-              <StyledText value={color} onClick={() => setamount(5)}>Short Break</StyledText>
-              <StyledText value={color} onClick={() => setamount(15)}>Long Break</StyledText>
+            <Row
+              style={{
+                display: "flex",
+                padding: "2em",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <StyledText value={color} onClick={() => setamount(25)}>
+                Pomodoro
+              </StyledText>
+              <StyledText value={color} onClick={() => setamount(5)}>
+                Short Break
+              </StyledText>
+              <StyledText value={color} onClick={() => setamount(15)}>
+                Long Break
+              </StyledText>
             </Row>
             <Row>
               <MinController value={color}>
-                <StyledButton value={color} onClick={() => increase()}> + </StyledButton>
+                <StyledButton value={color} onClick={() => increase()}>
+                  {" "}
+                  +{" "}
+                </StyledButton>
                 <p style={{ lineHeight: "35pt" }}>{amount}</p>
-                <StyledButton value={color} onClick={() => decrease()}> - </StyledButton>
+                <StyledButton value={color} onClick={() => decrease()}>
+                  {" "}
+                  -{" "}
+                </StyledButton>
               </MinController>
             </Row>
           </Col>
@@ -64,26 +87,25 @@ const App = (props) => {
       </Container>
     </>
   );
-}
+};
 
 export default App;
-
 
 const StyledButton = styled.button`
   background: transparent;
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  border: 2px solid ${props => props.value.secondary};
-  color: ${props => props.value.secondary};
+  border: 2px solid ${(props) => props.value.secondary};
+  color: ${(props) => props.value.secondary};
   margin: 0 1em;
   padding: 0.25em 1em;
   &:focus {
     outline: none;
 }
 &:hover{
-  background: ${props => props.value.secondary};
-  color: ${props => props.value.primary}
+  background: ${(props) => props.value.secondary};
+  color: ${(props) => props.value.primary}
 `;
 
 const StyledText = styled.button`
@@ -91,21 +113,21 @@ const StyledText = styled.button`
   // width: 50px;
   // height: 50px;
   border-radius: 25px;
-  border: 2px solid ${props => props.value.secondary};
-  color: ${props => props.value.secondary};
-  margin: 0 1em;
+  border: 2px solid ${(props) => props.value.secondary};
+  color: ${(props) => props.value.secondary};
+  margin: 5px;
   padding: 0.25em 1em;
   &:focus {
     outline: none;
-}
-&:hover{
-  background: ${props => props.value.secondary};
-  color: ${props => props.value.primary}
-}
+  }
+  &:hover {
+    background: ${(props) => props.value.secondary};
+    color: ${(props) => props.value.primary};
+  }
 `;
 
 const MinController = styled.div`
-  color: ${props => props.value.secondary};
+  color: ${(props) => props.value.secondary};
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;

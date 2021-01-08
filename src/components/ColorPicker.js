@@ -80,5 +80,5 @@ border: none;
 const ColorPick = styled.div`
 padding: 10px;
 display: flex;
-justify-content: space-evenly;
+justify-content: flex-start;
 `;

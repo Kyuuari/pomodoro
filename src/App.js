@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-// import "./App.css";
+import "./App.css";
 import Timer from "./components/Timer";
 import styled from "styled-components";
 import { Container, Row, Col } from "react-bootstrap";
@@ -24,7 +24,7 @@ const App = (props) => {
 
   return (
     <>
-      <Sidebar />
+
       <Container
         fluid
         style={{
@@ -36,6 +36,7 @@ const App = (props) => {
           overflow: "auto",
         }}
       >
+
         <Row
         // style={{
         //   display: "block",
@@ -43,12 +44,14 @@ const App = (props) => {
         >
           <Col
             style={{
-              justifyContent: "center",
+              justifyContent: "flex-start",
+              width: "100vw",
               alignItems: "center",
               display: "flex",
               flexDirection: "column",
             }}
           >
+            <Sidebar style={{}} />
             <Timer proptime={amount} />
 
             <Row
@@ -106,6 +109,14 @@ const StyledButton = styled.button`
 &:hover{
   background: ${(props) => props.value.secondary};
   color: ${(props) => props.value.primary}
+}
+
+-webkit-touch-callout: none; /* iOS Safari */
+-webkit-user-select: none; /* Safari */
+-khtml-user-select: none; /* Konqueror HTML */
+-moz-user-select: none; /* Old versions of Firefox */
+-ms-user-select: none; /* Internet Explorer/Edge */
+user-select: none;
 `;
 
 const StyledText = styled.button`

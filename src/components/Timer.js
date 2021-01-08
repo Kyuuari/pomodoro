@@ -32,14 +32,14 @@ const Timer = ({ proptime }) => {
 
   useEffect(() => {
     reset();
-    return () => {};
+    return () => { };
   }, [proptime]);
 
   useEffect(() => {
     if (time == 0) {
       play();
     }
-    return () => {};
+    return () => { };
   }, [time]);
 
   function tick() {
